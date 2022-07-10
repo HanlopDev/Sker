@@ -8,3 +8,7 @@ class BusinesOwnerCreate(BaseModel):
     email : EmailStr
     password : str
 
+class ItemCreate(BaseModel):
+    title : str
+    description : str
+

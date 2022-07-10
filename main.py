@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from config import setting
-from routers import businessowner
+from routers import businessowner, items
 from database import engine
 from models import Base
 
@@ -29,4 +29,4 @@ app = FastAPI(
         )
 
 app.include_router(businessowner.router)
-
+app.include_router(items.router)

@@ -12,7 +12,7 @@ def get_users():
     return {"data": "hello users"}
 
 @router.post("/businessowner", tags=["users"])
-def get_user(user: BusinesOwnerCreate, db:Session=Depends(get_db)):
+def create_user(user: BusinesOwnerCreate, db:Session=Depends(get_db)):
     user = UserBusinessOwner(
             username=user.username,
             business_name=user.business_name,

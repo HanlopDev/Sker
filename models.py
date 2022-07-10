@@ -1,5 +1,6 @@
-from sqlalchemy import Column, String, Boolean, ForeignKey, Integer
+from sqlalchemy import Column, String, Boolean, ForeignKey, Integer, Date
 from database import Base
+from sqlalchemy.orm import relationship
 
 class UserBusinessOwner(Base):
     __tablename__ = "owner"
@@ -12,7 +13,17 @@ class UserBusinessOwner(Base):
     email = Column(String, unique=True, index=True)
     password =Column(String, nullable=False)
 
+    items = relationship("Items",back_populates="owner")
 
+class Items(Base):
+    __tablename__ = "items"
 
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    description = Column(String)
+    date_posted = Column(Date)
+    id_owner = Column(Integer, ForeignKey("owner.id"))
+
+    owner = relationship("UserBusinessOwner", back_populates="items")
 
 
